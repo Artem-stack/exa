@@ -22,6 +22,7 @@
         </tr>
         </thead>
         <tbody>
+           
         @foreach($task as $tasks)
             <tr>
                 <th scope="row">{{ $tasks->id }}</th>

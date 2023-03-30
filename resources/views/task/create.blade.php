@@ -12,6 +12,7 @@
         <h3 class="text-gray-700 text-3xl font-medium">{{ isset($task) ? "Edit task ID {$task->id}" : 'Add task' }}</h3>
      
         <div class="mt-8">
+           
              <form enctype="multipart/form-data" class="space-y-5 mt-5" method="POST" action="{{ isset($task) ? route("task.update", $task->id) : route('task.store') }}">
                 @csrf
 

@@ -12,6 +12,8 @@ use App\Http\Requests;
 use App\Http\Requests\ProjectRequest;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\SendMail;
+use Mail;
 
 
 class TaskController extends Controller
@@ -59,8 +61,8 @@ class TaskController extends Controller
          $request->validate([
             'name' => 'required|min:2|max:255',
             'status_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'project_id' => '',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'project_id' => 'required',
     ]);
 
        $data = $request->all();
@@ -73,6 +75,11 @@ class TaskController extends Controller
         }
 
         Task::create($data);
+
+        $user_email= Auth::user()->email;
+        
+            // Mail::to($user_email)->send(new SendMail($user_email));
+        
 
         return redirect(route("home"));
     }

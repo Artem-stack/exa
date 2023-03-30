@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessPodcast;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -35,7 +36,6 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        
          
        return view("project.create");
     }
@@ -55,6 +55,9 @@ class ProjectController extends Controller
        $data = $request->validated();
 
         Project::create($data);
+  
+    dispatch(new ProcessPodcast($data));
+      
 
         return redirect(route("home"));
     }

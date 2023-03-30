@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -27,4 +29,3 @@ Route::resource('project', \App\Http\Controllers\ProjectController::class);
 Route::resource('task', \App\Http\Controllers\TaskController::class);
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
-

@@ -26,7 +26,7 @@ class TaskRequest extends FormRequest
         return [
              'name' => 'required',
              'status_id' => 'required',
-             'project_id' => '',
+             'project_id' => 'required',
             'image' => 'max:10240',
         ];
     }
